@@ -1,5 +1,12 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { TaskStatus } from './tasks.model';
+import { Exclude } from 'class-transformer';
+import {
+  BaseEntity,
+  Column,
+  DeleteDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { TaskStatus } from './tasks.status.enum';
 
 @Entity()
 export class Task extends BaseEntity {
@@ -14,4 +21,8 @@ export class Task extends BaseEntity {
 
   @Column()
   status: TaskStatus;
+
+  @DeleteDateColumn()
+  @Exclude()
+  deleted: Date;
 }
